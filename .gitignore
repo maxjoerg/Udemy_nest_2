@@ -1,2 +1,37 @@
 **/first_project/node_modules
 **/first_project/package-lock.json
+# compiled output
+**/messages/dist
+**/messages/node_modules
+
+# Logs
+**/messages/logs
+**/messages/*.log
+**/messages/npm-debug.log*
+**/messages/pnpm-debug.log*
+**/messages/yarn-debug.log*
+**/messages/yarn-error.log*
+**/messages/lerna-debug.log*
+
+# OS
+**/messages/.DS_Store
+
+# Tests
+**/messages/coverage
+**/messages/.nyc_output
+
+# IDEs and editors
+**/messages/.idea
+**/messages/.project
+**/messages/.classpath
+**/messages/.c9/
+**/messages/*.launch
+**/messages/.settings/
+**/messages/*.sublime-workspace
+
+# IDE - VSCode
+**/messages/.vscode/*
+**/messages/!.vscode/settings.json
+**/messages/!.vscode/tasks.json
+**/messages/!.vscode/launch.json
+**/messages/!.vscode/extensions.json
