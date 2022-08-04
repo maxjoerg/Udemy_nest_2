@@ -1,6 +1,41 @@
 **/first_project/node_modules
 **/first_project/package-lock.json
 # compiled output
+**/mycv/dist
+**/mycv/node_modules
+
+# Logs
+**/mycv/logs
+**/mycv/*.log
+**/mycv/npm-debug.log*
+**/mycv/pnpm-debug.log*
+**/mycv/yarn-debug.log*
+**/mycv/yarn-error.log*
+**/mycv/lerna-debug.log*
+
+# OS
+**/mycv/.DS_Store
+
+# Tests
+**/mycv/coverage
+**/mycv/.nyc_output
+
+# IDEs and editors
+**/mycv/.idea
+**/mycv/.project
+**/mycv/.classpath
+**/mycv/.c9/
+**/mycv/*.launch
+**/mycv/.settings/
+**/mycv/*.sublime-workspace
+
+# IDE - VSCode
+**/mycv/.vscode/*
+**/mycv/!.vscode/settings.json
+**/mycv/!.vscode/tasks.json
+**/mycv/!.vscode/launch.json
+**/mycv/!.vscode/extensions.json
+### # compiled output
 **/messages/dist
 **/messages/node_modules
 
