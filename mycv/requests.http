@@ -11,6 +11,20 @@ content-type: application/json
   "password" : "hallihallo"
 }
 
+### Create many  users
+POST http://localhost:3000/auth/signup/many
+content-type: application/json
+
+[
+  {
+    "email": "maxilein@gmail.com",
+    "password" : "hallihallo"
+  },  
+  {
+    "email": "lisimaus@gmail.com",
+    "password" : "tüt"
+  }
+]
 
 ### Get a particular message
 GET http://localhost:3000/messages/231

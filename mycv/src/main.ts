@@ -12,7 +12,10 @@ async function bootstrap() {
   });
   app.useGlobalPipes(
     new ValidationPipe({
-      whitelist: true,
+      transformOptions: {
+        enableImplicitConversion: true, // allow conversion underneath
+      },
+      whitelist : true,
     }),
   );
   await app.listen(3000);

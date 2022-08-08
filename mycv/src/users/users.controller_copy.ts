@@ -10,5 +10,16 @@ export class UsersController {
   @Post('/signup')
   createUser(@Body() body: CreateUserDto) {
     this.usersService.create(body.email, body.password);
-  }  
+  }
+  @Post('/signup/many')
+  createUserMany(@Body() body: CreateUserDto[]) {
+    console.log(body);
+    
+    for (const dto of body) {
+      console.log(dto.email);
+      console.log(dto.password);
+      this.usersService.create(dto.email, dto.password);
+      
+    }
+  }
 }
