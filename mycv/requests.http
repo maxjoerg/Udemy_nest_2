@@ -1,6 +1,9 @@
 ### List all messages
 GET http://localhost:3000/messages
 
+### find user
+GET http://localhost:3000/auth/user/findByFilter?email=lisimaus@gmail.com
+
 
 ### Create a new user
 POST http://localhost:3000/auth/signup

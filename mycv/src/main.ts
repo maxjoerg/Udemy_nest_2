@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
 import { AppModule } from './app.module';
@@ -15,7 +16,8 @@ async function bootstrap() {
       transformOptions: {
         enableImplicitConversion: true, // allow conversion underneath
       },
-      whitelist : true,
+      whitelist: true,
+      transform: true 
     }),
   );
   await app.listen(3000);
