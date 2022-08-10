@@ -2,7 +2,7 @@
 import { Body, Controller, Query, Post, NotFoundException, Get, Param } from '@nestjs/common';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { QueryDto } from './dtos/query-dto';
-import { UsersService } from './users.service';
+import { UsersService } from './users.service_copy';
 
 @Controller('auth')
 export class UsersController {

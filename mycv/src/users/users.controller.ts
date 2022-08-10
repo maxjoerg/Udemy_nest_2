@@ -1,9 +1,16 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
-/* eslint-disable prettier/prettier */
-// eslint-disable-next-line prettier/prettier
-import { Body, Controller, Query, Post, NotFoundException, Get, Param } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Post,
+  Get,
+  Patch,
+  Delete,
+  Param,
+  Query,
+  NotFoundException,
+} from '@nestjs/common';
 import { CreateUserDto } from './dtos/create-user.dto';
-import { QueryDto } from './dtos/query-dto';
+import { UpdateUserDto } from './dtos/update-user.dto';
 import { UsersService } from './users.service';
 
 @Controller('auth')
@@ -15,28 +22,27 @@ export class UsersController {
     this.usersService.create(body.email, body.password);
   }
 
-  @Get('/user/:id')
-  async getMessage(@Param('id') id: number) {
-    console.log(id)
-    const user = await this.usersService.findOne(id);
-
+  @Get('/:id')
+  async findUser(@Param('id') id: string) {
+    const user = await this.usersService.findOne(parseInt(id));
     if (!user) {
-      throw new NotFoundException('User does nor exist');
+      throw new NotFoundException('user not found');
     }
-
     return user;
   }
 
-  //@Get('/user/findByFilter')
-  @Get('/user/')
-    async findByFilter(@Query() query: QueryDto)        
-    {
-      console.log(query);
-      const user = await this.usersService.findOptional(query );
+  @Get()
+  findAllUsers(@Query('email') email: string) {
+    return this.usersService.find(email);
+  }
 
-      if (user.length == 0) {
-        throw new NotFoundException('User does not exist');
-      }
-      return user;
-    }
+  @Delete('/:id')
+  removeUser(@Param('id') id: string) {
+    return this.usersService.remove(parseInt(id));
+  }
+
+  @Patch('/:id')
+  updateUser(@Param('id') id: string, @Body() body: UpdateUserDto) {
+    return this.usersService.update(parseInt(id), body);
+  }
 }

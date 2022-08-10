@@ -1,9 +1,8 @@
 /* eslint-disable prettier/prettier */
-import { Injectable, Inject } from '@nestjs/common';
-import { Repository, SelectQueryBuilder } from 'typeorm';
-import { InjectRepository} from '@nestjs/typeorm';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './user.entity';
-import { QueryDto } from './dtos/query-dto';
 
 @Injectable()
 export class UsersService {
@@ -27,47 +26,20 @@ export class UsersService {
     return this.repo.find({ where: { email: email }});
   }
 
-  findOptional(dto: QueryDto){
-
-    let query = this.repo
-    .createQueryBuilder("user");
-
-    query = this.buildOrAnd(dto, query);
-
-    // run query
-    const users = query.getMany();
-    return users;
-
+  async update(id: number, attrs: Partial<User>) {
+    const user = await this.findOne(id);
+    if (!user) {
+      throw new NotFoundException('user not found');
+    }
+    Object.assign(user, attrs);
+    return this.repo.save(user);
   }
 
-  buildOrAnd(dto: QueryDto, query: SelectQueryBuilder<User>){
-
-    if(dto.type == "or"){
-
-      if(dto.email){
-        query.orWhere("user.email LIKE :email", { email: '%' + dto.email + '%' })
-      }
-      
-      if(dto.pwd){
-        query.orWhere("user.password LIKE :pwd", { pwd: '%' + dto.pwd + '%' })
-      }
+  async remove(id: number) {
+    const user = await this.findOne(id);
+    if (!user) {
+      throw new NotFoundException('user not found');
     }
-    else if(dto.type == "and"){
-      if(dto.email){
-        query.andWhere("user.email LIKE :email", { email: '%' + dto.email + '%' })
-      }
-      
-      if(dto.pwd){
-        query.andWhere("user.password LIKE :pwd", { pwd: '%' + dto.pwd + '%' })
-      }
-    } 
-    else if(dto.type == "all"){
-      return query;
-    }
-    return query;
+    return this.repo.remove(user);
   }
-
-  //update() {}
-
-  //remove() {}
 }
